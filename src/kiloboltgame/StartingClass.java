@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class StartingClass extends Applet implements Runnable, KeyListener {
+	private Robot robot;
+	
 	@Override
 	public void init() {
 		setSize(800, 400);
@@ -19,6 +21,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 
 	@Override
 	public void start() {
+		robot = new Robot();
+		
 		Thread thread = new Thread(this);
 		thread.start();
 	}
