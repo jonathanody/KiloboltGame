@@ -17,7 +17,7 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 	
 	@Override
 	public void init() {
-		setSize(800, 400);
+		setSize(800, 480);
 		setBackground(Color.BLACK);
 		setFocusable(true);
 		addKeyListener(this);
@@ -56,6 +56,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 	@Override
 	public void run() {
 		while (true) {
+			robot.update();
+			
 			repaint();
 
 			try {
@@ -100,14 +102,17 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 
 		case KeyEvent.VK_LEFT:
 			System.out.println("Move left");
+			robot.moveLeft();
 			break;
 
 		case KeyEvent.VK_RIGHT:
 			System.out.println("Move right");
+			robot.moveRight();
 			break;
 
 		case KeyEvent.VK_SPACE:
 			System.out.println("Jump");
+			robot.jump();
 			break;
 
 		default:
@@ -129,10 +134,12 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 
 		case KeyEvent.VK_LEFT:
 			System.out.println("Stop moving left");
+			robot.stop();
 			break;
 
 		case KeyEvent.VK_RIGHT:
 			System.out.println("Stop moving right");
+			robot.stop();
 			break;
 
 		case KeyEvent.VK_SPACE:
