@@ -7,11 +7,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.net.URL;
 
 public class StartingClass extends Applet implements Runnable, KeyListener {
 	private Robot robot;
-	private Image image;
+	private Image image, character;
 	private Graphics second;
+	private URL base;
 	
 	@Override
 	public void init() {
@@ -21,6 +23,14 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		addKeyListener(this);
 		Frame frame = (Frame) this.getParent().getParent();
 		frame.setTitle("Q-Bot Alpha");
+		try {
+			base = getDocumentBase();
+		} catch(Exception e) {
+			//TODO: Handle exception
+		}
+		
+		// Image setup
+		character = getImage(base, "data/character.png");
 	}
 
 	@Override
@@ -74,8 +84,7 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 	
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paint(g);
+		g.drawImage(character, robot.getCenterX() - 61, robot.getCenterY() - 63, this);
 	}
 
 	@Override
